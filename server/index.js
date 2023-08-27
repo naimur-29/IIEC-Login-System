@@ -1,6 +1,17 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
+// DB:
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://127.0.0.1:27017/test");
+
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("MongoDB database connection established successfully");
+});
+
 const PORT = 9990;
 
 // routes:

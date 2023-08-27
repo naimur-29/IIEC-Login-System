@@ -1,16 +1,32 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Users!");
+// local imports:
+const { getUsers, getActiveUsers } = require("../services/users");
+
+router.get("/", async (req, res) => {
+  const users = await getUsers();
+
+  if (users?.status) {
+    res.status(response.status).json({ message: response.message });
+  }
+
+  res.json(users);
 });
 
-router.get("/active", (req, res) => {
-  res.send("active users!");
-});
+router.get("/active", async (req, res) => {
+  const activeUsers = await getActiveUsers();
 
-// router.get("/:key", (req, res) => {
-//   res.send(`You've requested for ${req.params.key}`);
-// });
+  if (activeUsers?.status) {
+    res.status(response.status).json({ message: response.message });
+  }
+
+  let users = [];
+  activeUsers.forEach((u) => {
+    users.push({ name: u.name, id: u.id });
+  });
+
+  res.json(users);
+});
 
 module.exports = router;
