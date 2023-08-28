@@ -3,7 +3,7 @@ const { createUser, getUsersById, updateUserById } = require("./users");
 const { read, write, getCurrentDateTime } = require("./records");
 
 const getHashedPassword = (plainPassword) => {
-  const secretKey = "woureksdljfl302948sldkf90";
+  const secretKey = process.env.HASH_KEY;
 
   const hmac = crypto.createHmac("sha256", secretKey);
   hmac.update(plainPassword);

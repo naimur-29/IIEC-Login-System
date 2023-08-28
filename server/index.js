@@ -1,18 +1,27 @@
+require("dotenv").config();
+
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 app.use(express.json());
 
+// cors:
+const corsOption = {
+  origin: ["http://localhost:9999", "http://127.0.0.1:9999"],
+  methods: "*",
+  allowedHeaders: "Content-Type,Authorization",
+};
+app.use(cors(corsOption));
+
 // DB:
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/test");
+mongoose.connect(process.env.DB_URI);
 
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
-
-const PORT = 9990;
 
 // routes:
 app.get("/", (req, res) => {
@@ -28,4 +37,4 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/records", recordsRouter);
 
-app.listen(PORT || 1000);
+app.listen(process.env.PORT || 1000);
