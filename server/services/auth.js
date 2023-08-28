@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const { createUser, getUsersById, updateUserById } = require("./users");
+const { read, write, getCurrentDateTime } = require("./records");
 
 const getHashedPassword = (plainPassword) => {
   const secretKey = "woureksdljfl302948sldkf90";
@@ -10,18 +11,6 @@ const getHashedPassword = (plainPassword) => {
   const hashedPassword = hmac.digest("hex");
 
   return hashedPassword;
-};
-
-// new user register:
-const registerUser = async ({ userData }) => {
-  const hashedPassword = getHashedPassword(userData.password);
-
-  // create user with hashed password:
-  const res = await createUser({
-    userData: { ...userData, password: hashedPassword },
-  });
-
-  return res;
 };
 
 // user sign In:
@@ -60,7 +49,24 @@ const signUserIn = async ({ userData }) => {
   });
 
   if (res.status !== 200) return res;
-  else return { ...res, message: "User signed in successfully!" };
+  else {
+    const { currentDate, currentTime } = getCurrentDateTime(new Date());
+
+    const data = await read(`./records/${currentDate}.csv`);
+
+    let newData = `${user.id},${user.name},In,${currentTime}\n`;
+
+    if (data !== undefined) {
+      await write(`./records/${currentDate}.csv`, data + newData);
+    } else {
+      await write(
+        `./records/${currentDate}.csv`,
+        "ID, NAME, ACTIVITY, TIME(MILITARY)\n" + newData
+      );
+    }
+
+    return { ...res, message: "User signed in successfully!" };
+  }
 };
 
 // user sign Out:
@@ -99,7 +105,48 @@ const signUserOut = async ({ userData }) => {
   });
 
   if (res.status !== 200) return res;
-  else return { ...res, message: "User signed out successfully!" };
+  else {
+    const { currentDate, currentTime } = getCurrentDateTime(new Date());
+
+    const data = await read(`./records/${currentDate}.csv`);
+
+    let newData = `${user.id},${user.name},Out,${currentTime}\n`;
+
+    if (data !== undefined) {
+      await write(`./records/${currentDate}.csv`, data + newData);
+    } else {
+      await write(
+        `./records/${currentDate}.csv`,
+        "ID,NAME,ACTIVITY,TIME(MILITARY)\n" + newData
+      );
+    }
+
+    return { ...res, message: "User signed out successfully!" };
+  }
+};
+
+// new user register:
+const registerUser = async ({ userData }) => {
+  const hashedPassword = getHashedPassword(userData.password);
+  const { currentDate, currentTime } = getCurrentDateTime(new Date());
+
+  // create user with hashed password:
+  const res = await createUser({
+    userData: {
+      ...userData,
+      password: hashedPassword,
+      active: false,
+      createdAt: "Date: " + currentDate + " Time: " + currentTime,
+    },
+  });
+
+  // sign user in:
+  if (res.status === 200) {
+    console.log("doing work!");
+    await signUserIn({ userData });
+  }
+
+  return res;
 };
 
 module.exports = { registerUser, signUserIn, signUserOut };

@@ -11,5 +11,5 @@
 ### 28 Aug 2023
 
 - if user already logged in, say already logged in and vise-versa✅
-- set up history
-- store history in a csv file
+- set up history download
+- store history in a csv file ✅
