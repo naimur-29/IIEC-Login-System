@@ -13,4 +13,7 @@
 - if user already logged in, say already logged in and vise-versa ✅
 - set up history download ✅
 - store history in a csv file ✅
-- set up cors & env
+- set up cors & env ✅
+- set up basic folder structure & files on client side ✅
+- set up react router
+- implement basic show active users functionalities
