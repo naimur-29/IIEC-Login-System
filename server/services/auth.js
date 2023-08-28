@@ -12,6 +12,7 @@ const getHashedPassword = (plainPassword) => {
   return hashedPassword;
 };
 
+// new user register:
 const registerUser = async ({ userData }) => {
   const hashedPassword = getHashedPassword(userData.password);
 
@@ -23,7 +24,9 @@ const registerUser = async ({ userData }) => {
   return res;
 };
 
+// user sign In:
 const signUserIn = async ({ userData }) => {
+  // check if user id valid or not:
   const user = await getUsersById(userData.id);
 
   if (!user || user?.status === 404) {
@@ -33,6 +36,7 @@ const signUserIn = async ({ userData }) => {
     };
   }
 
+  // check if user password valid or not:
   const hashedPassword = getHashedPassword(userData.password);
   if (user.password !== hashedPassword) {
     return {
@@ -41,6 +45,15 @@ const signUserIn = async ({ userData }) => {
     };
   }
 
+  // check if user already signed in or not:
+  if (user.active) {
+    return {
+      status: 200,
+      message: "User already signed in!",
+    };
+  }
+
+  // sign user in:
   const res = await updateUserById({
     id: userData.id,
     updatedData: { active: true },
@@ -50,7 +63,9 @@ const signUserIn = async ({ userData }) => {
   else return { ...res, message: "User signed in successfully!" };
 };
 
+// user sign Out:
 const signUserOut = async ({ userData }) => {
+  // see if user id is valid or not:
   const user = await getUsersById(userData.id);
 
   if (!user || user?.status === 404) {
@@ -60,6 +75,7 @@ const signUserOut = async ({ userData }) => {
     };
   }
 
+  // check if user password valid or not:
   const hashedPassword = getHashedPassword(userData.password);
   if (user.password !== hashedPassword) {
     return {
@@ -68,6 +84,15 @@ const signUserOut = async ({ userData }) => {
     };
   }
 
+  // check if user already signed out or not:
+  if (!user.active) {
+    return {
+      status: 200,
+      message: "User already signed out!",
+    };
+  }
+
+  // sign user out:
   const res = await updateUserById({
     id: userData.id,
     updatedData: { active: false },
