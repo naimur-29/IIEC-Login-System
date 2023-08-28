@@ -10,6 +10,6 @@
 
 ### 28 Aug 2023
 
-- if user already logged in, say already logged in and vise-versa✅
-- set up history download
+- if user already logged in, say already logged in and vise-versa ✅
+- set up history download ✅
 - store history in a csv file ✅

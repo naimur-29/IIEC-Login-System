@@ -22,8 +22,10 @@ app.get("/", (req, res) => {
 // routers:
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
+const recordsRouter = require("./routes/records");
 
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
+app.use("/records", recordsRouter);
 
 app.listen(PORT || 1000);
