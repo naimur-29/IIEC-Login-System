@@ -29,7 +29,12 @@ const getUsers = async () => {
 const getActiveUsers = async () => {
   try {
     const res = await User.find({ active: true });
-    return res;
+    let filteredRes = [];
+    for (let ele of res) {
+      filteredRes.push({ name: ele.name, id: ele.id });
+    }
+
+    return filteredRes;
   } catch (error) {
     console.log(error);
     return {

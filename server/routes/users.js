@@ -21,12 +21,7 @@ router.get("/active", async (req, res) => {
     res.status(response.status).json({ message: response.message });
   }
 
-  let users = [];
-  activeUsers.forEach((u) => {
-    users.push({ name: u.name, id: u.id });
-  });
-
-  res.json(users);
+  res.json(activeUsers);
 });
 
 module.exports = router;

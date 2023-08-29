@@ -15,5 +15,5 @@
 - store history in a csv file ✅
 - set up cors & env ✅
 - set up basic folder structure & files on client side ✅
-- set up react router
-- implement basic show active users functionalities
+- set up react router ✅
+- implement basic show active users functionalities✅

@@ -1,0 +1,19 @@
+.card-container {
+  background-color: #fff3;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+
+  & > .name,
+  & > .id {
+  }
+
+  & > .id {
+    & > span {
+      font-weight: bold;
+    }
+  }
+}

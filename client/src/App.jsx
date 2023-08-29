@@ -3,9 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./scss/app.scss";
 
 // pages:
-import Dashboard from "./pages/dashboard";
-import Register from "./pages/register";
-import Records from "./pages/records";
+import Dashboard from "./pages/Dashboard";
+import Register from "./pages/Register";
+import Records from "./pages/Records";
 
 // router:
 const router = createBrowserRouter([
