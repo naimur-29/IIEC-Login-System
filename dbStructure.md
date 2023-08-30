@@ -5,8 +5,9 @@ const Users = [
     name: new String(),
     password: new String(),
     department: new String(),
-    createdAt: new Date(),
+    createdAt: new String(),
     active: new Boolean(), // logged in or not!
+    joinedAt: new String(),
   },
 ];
 ```

@@ -31,7 +31,11 @@ const getActiveUsers = async () => {
     const res = await User.find({ active: true });
     let filteredRes = [];
     for (let ele of res) {
-      filteredRes.push({ name: ele.name, id: ele.id });
+      filteredRes.push({
+        name: ele.name,
+        id: ele.id,
+        lastJoinedAt: ele.lastJoinedAt,
+      });
     }
 
     return filteredRes;

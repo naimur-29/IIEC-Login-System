@@ -17,3 +17,8 @@
 - set up basic folder structure & files on client side ✅
 - set up react router ✅
 - implement basic show active users functionalities✅
+
+### 30 Aug 2023
+
+- store time when the user logged in✅
+-

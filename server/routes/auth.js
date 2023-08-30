@@ -19,7 +19,6 @@ router.post("/logout", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   const userData = req.body;
-  userData.createdAt = new Date();
   const response = await registerUser({ userData });
 
   res.status(response.status).json({ message: response.message });

@@ -43,15 +43,15 @@ const signUserIn = async ({ userData }) => {
   }
 
   // sign user in:
+  const { currentDate, currentTime } = getCurrentDateTime(new Date());
   const res = await updateUserById({
     id: userData.id,
-    updatedData: { active: true },
+    updatedData: { active: true, lastJoinedAt: currentTime },
   });
 
+  // store records:
   if (res.status !== 200) return res;
   else {
-    const { currentDate, currentTime } = getCurrentDateTime(new Date());
-
     const data = await read(`./records/${currentDate}.csv`);
 
     let newData = `${user.id},${user.name},In,${currentTime}\n`;
@@ -99,15 +99,15 @@ const signUserOut = async ({ userData }) => {
   }
 
   // sign user out:
+  const { currentDate, currentTime } = getCurrentDateTime(new Date());
   const res = await updateUserById({
     id: userData.id,
-    updatedData: { active: false },
+    updatedData: { active: false, lastJoinedAt: currentTime },
   });
 
+  // store records:
   if (res.status !== 200) return res;
   else {
-    const { currentDate, currentTime } = getCurrentDateTime(new Date());
-
     const data = await read(`./records/${currentDate}.csv`);
 
     let newData = `${user.id},${user.name},Out,${currentTime}\n`;
@@ -136,7 +136,7 @@ const registerUser = async ({ userData }) => {
       ...userData,
       password: hashedPassword,
       active: false,
-      createdAt: "Date: " + currentDate + " Time: " + currentTime,
+      createdAt: "Date:" + currentDate + " Time:" + currentTime,
     },
   });
 
