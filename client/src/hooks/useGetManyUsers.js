@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:9990/users";
 
-const useGetManyUsers = (urlTail = "") => {
+export default function useGetManyUsers(urlTail = "") {
   // states:
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,11 +14,10 @@ const useGetManyUsers = (urlTail = "") => {
     setIsLoading(true);
 
     try {
-      let res = await fetch(BASE_URL + urlTail);
-      res = await res.json();
-      setData(res);
+      const res = await axios.get(BASE_URL + urlTail);
+      setData(res.data);
     } catch (error) {
-      setError(error.message);
+      setError(error.response.data.message);
     }
 
     setTimeout(() => {
@@ -31,6 +31,4 @@ const useGetManyUsers = (urlTail = "") => {
   }, [getData]);
 
   return { data, reload: getData, error, isLoading };
-};
-
-export default useGetManyUsers;
+}

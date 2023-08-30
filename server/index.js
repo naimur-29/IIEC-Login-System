@@ -9,8 +9,9 @@ app.use(express.json());
 // cors:
 const corsOption = {
   origin: ["http://localhost:9999", "http://127.0.0.1:9999"],
-  methods: "*",
-  allowedHeaders: "Content-Type,Authorization",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 app.use(cors(corsOption));
 

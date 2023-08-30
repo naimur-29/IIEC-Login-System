@@ -10,6 +10,7 @@ const ActiveUserCard = ({ userData }) => {
         <span>ID: </span>
         {userData.id}
       </p>
+      <p>Joined at: {userData.lastJoinedAt}</p>
     </div>
   );
 };
@@ -18,6 +19,7 @@ ActiveUserCard.propTypes = {
   userData: PropTypes.shape({
     name: PropTypes.string,
     id: PropTypes.number,
+    lastJoinedAt: PropTypes.string,
   }),
 };
 

@@ -102,7 +102,7 @@ const signUserOut = async ({ userData }) => {
   const { currentDate, currentTime } = getCurrentDateTime(new Date());
   const res = await updateUserById({
     id: userData.id,
-    updatedData: { active: false, lastJoinedAt: currentTime },
+    updatedData: { active: false, lastJoinedAt: "" },
   });
 
   // store records:

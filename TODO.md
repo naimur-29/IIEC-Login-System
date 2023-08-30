@@ -21,4 +21,5 @@
 ### 30 Aug 2023
 
 - store time when the user logged in✅
--
+- connect login, logout system frontend✅
+- connect register system frontend

@@ -5,46 +5,9 @@
 
   & > .title-section {
     background-color: #fff3;
+    position: sticky;
+    top: 0;
     margin-bottom: 40px;
     padding: 0.5rem 0;
-  }
-
-  & > .auth-section {
-    background-color: #fff3;
-    max-width: 720px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-
-    & > .form {
-      background-color: #fff3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-
-      & > .labels-container,
-      & > .inputs-container {
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-    }
-
-    & > .buttons-container {
-      background-color: #fff3;
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-
-      & > .btn {
-        margin-bottom: 5px;
-        background-color: #fff3;
-        color: #323232;
-        font-weight: bold;
-        border-radius: 4px;
-        padding: 8px 10px;
-      }
-    }
   }
 }
