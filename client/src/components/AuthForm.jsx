@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -6,13 +6,21 @@ import "../scss/authForm.scss";
 
 // local custom hooks:
 import useAuth from "../hooks/useAuth";
+import useFocusNext from "../hooks/useFocusNext";
 
-const AuthForm = ({ reloadActiveUsersList }) => {
+// global variables:
+// let timeoutRef = null;
+
+const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
   // states:
   const [formData, setFormData] = useState({
     id: "",
     password: "",
   });
+
+  // references:
+  const timeoutRef = useRef(null);
+  const focusNextRef = useFocusNext();
 
   // hooks:
   const {
@@ -24,7 +32,18 @@ const AuthForm = ({ reloadActiveUsersList }) => {
     setError,
   } = useAuth();
 
+  // useEffects:
+
   // functions:
+  const isUserAlreadySignedIn = () => {
+    for (let user of activeUsersList) {
+      if (String(user.id) === String(formData.id)) {
+        return [true, user.name];
+      }
+    }
+    return [false, null];
+  };
+
   const isFormDataValid = () => {
     if (!(formData.id && formData.password)) {
       setError("Seriously? Enter something before you press that button!");
@@ -46,52 +65,86 @@ const AuthForm = ({ reloadActiveUsersList }) => {
   };
 
   const handleSubmit = async (event) => {
-    setResponse("");
+    const action = event.target.name;
     setError("");
+    setResponse("");
+    clearTimeout(timeoutRef.current);
+    let isValidReq = isFormDataValid();
 
-    if (isFormDataValid()) {
-      await submit(formData, `/${[event.target.name]}`);
-      reloadActiveUsersList();
+    if (isValidReq) {
+      // check if user already signed in or out:
+      const actionValidity = isUserAlreadySignedIn();
 
-      setFormData({
-        id: "",
-        password: "",
-      });
+      if (action === "login" && actionValidity[0]) {
+        setError(
+          `${actionValidity[1].split(" ")[0]}, you've already signed in!`
+        );
+      } else {
+        await submit(formData, `/${action}`);
+        reloadActiveUsersList();
+
+        setFormData({
+          id: "",
+          password: "",
+        });
+      }
     }
+
+    timeoutRef.current = setTimeout(() => {
+      setError("");
+      setResponse("");
+    }, 10000);
   };
 
   return (
     <div className="auth-section">
-      <div>
-        {error ? <p style={{ backgroundColor: "#f003" }}>{error}</p> : <></>}
-
-        {response ? (
-          <p style={{ backgroundColor: "#0f03" }}>{response}</p>
-        ) : (
-          <></>
-        )}
-      </div>
-
       <div className="form">
-        <div className="labels-container">
-          <label>ID</label>
-          <label>Password</label>
+        {/* Input fields: */}
+        <div className="fields-container">
+          <div className="container">
+            <label>ID</label>
+            <input
+              ref={focusNextRef}
+              type="string"
+              name="id"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.id}
+              onChange={handleFormData}
+            />
+          </div>
+
+          <div className="container">
+            <label>Password</label>
+            <input
+              ref={focusNextRef}
+              type="password"
+              name="password"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.password}
+              onChange={handleFormData}
+            />
+          </div>
         </div>
 
-        <div className="inputs-container">
-          <input
-            type="string"
-            name="id"
-            autoComplete="off"
-            value={formData.id}
-            onChange={handleFormData}
-          />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleFormData}
-          />
+        {/* Error and Response message: */}
+        <div className="message-container">
+          {error ? (
+            <p style={{ backgroundColor: "#f003", padding: "2px" }}>{error}</p>
+          ) : (
+            <></>
+          )}
+
+          {response ? (
+            <p style={{ backgroundColor: "#0f03", padding: "2px" }}>
+              {response}
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 
@@ -102,7 +155,7 @@ const AuthForm = ({ reloadActiveUsersList }) => {
           disabled={isLoading}
           onClick={handleSubmit}
         >
-          Login
+          {isLoading ? "Loading..." : "Login"}
         </button>
         <button
           className="btn"
@@ -122,6 +175,7 @@ const AuthForm = ({ reloadActiveUsersList }) => {
 
 AuthForm.propTypes = {
   reloadActiveUsersList: PropTypes.func,
+  activeUsersList: PropTypes.array,
 };
 
 export default AuthForm;

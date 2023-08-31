@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .dashboard-page {
   height: 100%;
   width: 100%;
@@ -7,5 +9,29 @@
     top: 0;
     margin-bottom: 40px;
     padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $main-light;
+    box-shadow: 0 4px 10px $main-dark20;
+
+    & > .title-img {
+      object-fit: contain;
+      width: 120px;
+      margin-right: 10px;
+
+      @media (max-width: 1220px) {
+        display: none;
+      }
+    }
+
+    & > .title {
+      color: $main-dark;
+      font-size: 3rem;
+
+      @media (max-width: 540px) {
+        font-size: 2rem;
+      }
+    }
   }
 }

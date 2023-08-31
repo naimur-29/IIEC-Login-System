@@ -1,5 +1,9 @@
+@import "./variables.scss";
+
 #root {
-  width: clamp(100vw, 100vw, 1280px);
+  width: 95vw;
+  min-width: 95vw;
+  max-width: 1920px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;

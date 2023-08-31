@@ -1,18 +1,57 @@
+@import "./variables.scss";
+
 .active-users-section {
   padding: 1rem;
-  max-width: 720px;
+  max-width: 920px;
   margin: 0 auto;
+  background-color: $main-dark90;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px $main-dark20;
 
   & > .title-section {
     margin-bottom: 12px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+
+    & > .title {
+      color: $main-light;
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    & > input {
+      background-color: $main-light30;
+      border: solid 2px $main-light70;
+      outline: none;
+      padding: 8px 6px;
+      font-size: 1.2rem;
+      opacity: 0.7;
+      color: $main-light;
+      border-radius: 4px;
+      transition: all 100ms ease-out;
+
+      &:active {
+        scale: 1.01;
+      }
+
+      &::placeholder {
+        color: $main-light70;
+      }
+
+      &:focus {
+        opacity: 1;
+        border: solid 2px $main-light;
+      }
+    }
   }
 
-  & > .users-list-container {
-    background-color: #fff3;
+  & .users-list-container {
+    background-color: #fff1;
+    padding: 20px;
     display: flex;
-    flex-grow: 1;
-    justify-content: center;
+    flex-direction: column;
+    border-radius: 8px;
+    gap: 8px;
   }
 }

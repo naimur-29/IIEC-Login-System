@@ -1,19 +1,33 @@
+@import "./variables.scss";
+
 .card-container {
   background-color: #fff3;
-  width: 100%;
-  margin-bottom: 6px;
   padding: 8px 12px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
   border-radius: 6px;
+  transition: all 150ms ease-out;
 
-  & > .name,
-  & > .id {
+  &:hover {
+    translate: 0 -1%;
+    background-color: #fff4;
+  }
+
+  & > p {
+    color: $main-light;
+    font-size: 1.2rem;
+    flex: 1;
+
+    & > span {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
   }
 
   & > .id {
-    & > span {
-      font-weight: bold;
-    }
+    border-left: 3px solid #fff7;
+    border-right: 3px solid #fff7;
   }
 }

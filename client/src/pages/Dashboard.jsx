@@ -7,6 +7,9 @@ import AuthForm from "../components/AuthForm";
 // local custom hooks:
 import useFetchUsers from "../hooks/useFetchUsers";
 
+// assets:
+import MainLogo from "../assets/main-logo.png";
+
 const Dashboard = () => {
   const {
     data: activeUsersList,
@@ -16,11 +19,17 @@ const Dashboard = () => {
 
   return (
     <section className="dashboard-page">
+      {/* <div className="overlay-logo"></div> */}
+
       <header className="title-section">
-        <h1>IUBAT Innovation & Entrepreneurship Center</h1>
+        <img className="title-img" src={MainLogo} alt="logo" />
+        <h1 className="title">IUBAT Innovation & Entrepreneurship Center</h1>
       </header>
 
-      <AuthForm reloadActiveUsersList={reloadActiveUsersList} />
+      <AuthForm
+        activeUsersList={activeUsersList}
+        reloadActiveUsersList={reloadActiveUsersList}
+      />
 
       <ActiveUsers
         activeUsersList={activeUsersList}

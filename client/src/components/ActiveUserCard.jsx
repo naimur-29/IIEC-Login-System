@@ -5,12 +5,17 @@ import "../scss/activeUserCard.scss";
 const ActiveUserCard = ({ userData }) => {
   return (
     <div className="card-container">
-      <p className="name">{userData.name}</p>
+      <p>
+        <span>{userData.name}</span>
+      </p>
       <p className="id">
         <span>ID: </span>
         {userData.id}
       </p>
-      <p>Joined at: {userData.lastJoinedAt}</p>
+      <p>
+        <span>Joined at: </span>
+        {userData.lastJoinedAt}
+      </p>
     </div>
   );
 };

@@ -18,14 +18,22 @@ const ActiveUsers = ({ activeUsersList, isActiveUsersListLoading }) => {
   return (
     <div className="active-users-section">
       <header className="title-section">
-        <h3 className="title">Active Users</h3>
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search"
-            onChange={(e) => setSearchField(e.target.value.toLowerCase())}
-          />
-        </div>
+        <h3 className="title">
+          Active Users
+          {activeUsersList.length
+            ? ` [ ${
+                activeUsersList.length > 0 && activeUsersList.length < 10
+                  ? "0" + activeUsersList.length
+                  : activeUsersList.length
+              } ]`
+            : " [...]"}
+        </h3>
+
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={(e) => setSearchField(e.target.value.toLowerCase())}
+        />
       </header>
 
       <div>
