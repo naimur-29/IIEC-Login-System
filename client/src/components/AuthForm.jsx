@@ -27,10 +27,10 @@ const AuthForm = ({ reloadActiveUsersList }) => {
   // functions:
   const isFormDataValid = () => {
     if (!(formData.id && formData.password)) {
-      setError("Invalid data or empty field!");
+      setError("Seriously? Enter something before you press that button!");
       return false;
     } else if (isNaN(formData.id)) {
-      setError("Invalid ID");
+      setError("Enter your proper ID!");
       return false;
     } else {
       setFormData((prev) => ({ ...prev, id: Number(prev.id) }));
@@ -63,9 +63,13 @@ const AuthForm = ({ reloadActiveUsersList }) => {
   return (
     <div className="auth-section">
       <div>
-        {error ? <p>Error: {error}</p> : <></>}
+        {error ? <p style={{ backgroundColor: "#f003" }}>{error}</p> : <></>}
 
-        {response ? <p>Response: {response}</p> : <></>}
+        {response ? (
+          <p style={{ backgroundColor: "#0f03" }}>{response}</p>
+        ) : (
+          <></>
+        )}
       </div>
 
       <div className="form">
@@ -78,6 +82,7 @@ const AuthForm = ({ reloadActiveUsersList }) => {
           <input
             type="string"
             name="id"
+            autoComplete="off"
             value={formData.id}
             onChange={handleFormData}
           />

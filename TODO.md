@@ -22,4 +22,10 @@
 
 - store time when the user logged in✅
 - connect login, logout system frontend✅
+
+### 31 Aug 2023
+
 - connect register system frontend
+- create records page
+- create admin account
+- route records page if admin active

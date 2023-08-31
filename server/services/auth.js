@@ -21,7 +21,7 @@ const signUserIn = async ({ userData }) => {
   if (!user || user?.status === 404) {
     return {
       status: 404,
-      message: "User not found!",
+      message: "Enter the correct ID or GO REGISTER FIRST!",
     };
   }
 
@@ -30,7 +30,7 @@ const signUserIn = async ({ userData }) => {
   if (user.password !== hashedPassword) {
     return {
       status: 404,
-      message: "Wrong password!",
+      message: `Wrong password, mate!`,
     };
   }
 
@@ -38,7 +38,7 @@ const signUserIn = async ({ userData }) => {
   if (user.active) {
     return {
       status: 200,
-      message: "User already signed in!",
+      message: `${user.name.split(" ")[0]}, you've already signed in!`,
     };
   }
 
@@ -65,7 +65,10 @@ const signUserIn = async ({ userData }) => {
       );
     }
 
-    return { ...res, message: "User signed in successfully!" };
+    return {
+      ...res,
+      message: `Hey ${user.name.split(" ")[0]}, you signed in successfully!`,
+    };
   }
 };
 
@@ -77,7 +80,7 @@ const signUserOut = async ({ userData }) => {
   if (!user || user?.status === 404) {
     return {
       status: 404,
-      message: "User not found!",
+      message: "Enter the correct ID or GO REGISTER FIRST!",
     };
   }
 
@@ -86,7 +89,7 @@ const signUserOut = async ({ userData }) => {
   if (user.password !== hashedPassword) {
     return {
       status: 404,
-      message: "Wrong password!",
+      message: "Wrong password, mate!",
     };
   }
 
@@ -94,7 +97,7 @@ const signUserOut = async ({ userData }) => {
   if (!user.active) {
     return {
       status: 200,
-      message: "User already signed out!",
+      message: `${user.name.split(" ")[0]}, you've already signed out!`,
     };
   }
 
@@ -121,7 +124,10 @@ const signUserOut = async ({ userData }) => {
       );
     }
 
-    return { ...res, message: "User signed out successfully!" };
+    return {
+      ...res,
+      message: `Hey ${user.name.split(" ")[0]}, you signed out successfully!`,
+    };
   }
 };
 

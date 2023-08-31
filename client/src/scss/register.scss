@@ -1,0 +1,32 @@
+.register-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+
+  & > .title-section {
+    margin-bottom: 40px;
+  }
+
+  & > .form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    & > .container {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+  }
+
+  & > .button-section {
+    & > button {
+      width: 100%;
+      max-width: 420px;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:9990/users";
 
-export default function useGetManyUsers(urlTail = "") {
+export default function useFetchUsers(urlTail = "") {
   // states:
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

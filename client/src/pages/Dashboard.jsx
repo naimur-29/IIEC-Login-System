@@ -5,19 +5,19 @@ import ActiveUsers from "../components/ActiveUsers";
 import AuthForm from "../components/AuthForm";
 
 // local custom hooks:
-import useGetManyUsers from "../hooks/useGetManyUsers";
+import useFetchUsers from "../hooks/useFetchUsers";
 
 const Dashboard = () => {
   const {
     data: activeUsersList,
     reload: reloadActiveUsersList,
     isLoading: isActiveUsersListLoading,
-  } = useGetManyUsers("/active");
+  } = useFetchUsers("/active");
 
   return (
     <section className="dashboard-page">
       <header className="title-section">
-        <h1>IIEC Login System</h1>
+        <h1>IUBAT Innovation & Entrepreneurship Center</h1>
       </header>
 
       <AuthForm reloadActiveUsersList={reloadActiveUsersList} />

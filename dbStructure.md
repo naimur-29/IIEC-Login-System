@@ -5,6 +5,7 @@ const Users = [
     name: new String(),
     password: new String(),
     department: new String(),
+    designation: new String(),
     createdAt: new String(),
     active: new Boolean(), // logged in or not!
     joinedAt: new String(),
