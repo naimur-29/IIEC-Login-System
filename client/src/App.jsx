@@ -6,6 +6,7 @@ import "./scss/app.scss";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Records from "./pages/Records";
+import Error from "./pages/Error";
 
 // router:
 const router = createBrowserRouter([
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
   {
     path: "/records",
     element: <Records />,
+  },
+
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 

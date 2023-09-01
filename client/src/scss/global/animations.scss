@@ -1,0 +1,21 @@
+@keyframes SkeletonWhite {
+  0% {
+    background-color: #fff1;
+  }
+
+  100% {
+    background-color: #fff4;
+  }
+}
+
+@keyframes AppearUp {
+  0% {
+    opacity: 0;
+    transform: translateY(5%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

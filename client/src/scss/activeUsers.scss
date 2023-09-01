@@ -7,6 +7,7 @@
   background-color: $main-dark90;
   border-radius: 8px;
   box-shadow: 0 4px 10px $main-dark20;
+  animation: AppearUp 400ms ease-out 200ms backwards;
 
   & > .title-section {
     margin-bottom: 12px;
@@ -16,7 +17,7 @@
     gap: 10px;
 
     & > .title {
-      color: $main-light;
+      color: #fff;
       font-size: 1.4rem;
       font-weight: 500;
     }

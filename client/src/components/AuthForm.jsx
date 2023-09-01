@@ -90,7 +90,7 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
     timeoutRef.current = setTimeout(() => {
       setError("");
       setResponse("");
-    }, 10000);
+    }, 5000);
   };
 
   return (
@@ -99,7 +99,7 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
         {/* Input fields: */}
         <div className="fields-container">
           <div className="container">
-            <label>ID</label>
+            <label>ID: </label>
             <input
               ref={focusNextRef}
               type="string"
@@ -113,7 +113,7 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
           </div>
 
           <div className="container">
-            <label>Password</label>
+            <label>Password: </label>
             <input
               ref={focusNextRef}
               type="password"

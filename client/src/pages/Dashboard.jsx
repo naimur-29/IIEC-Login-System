@@ -6,14 +6,14 @@ import AuthForm from "../components/AuthForm";
 import MainTitle from "../components/MainTitle.jsx";
 
 // local custom hooks:
-import useFetchUsers from "../hooks/useFetchUsers";
+import useFetchUser from "../hooks/useFetchUser";
 
 const Dashboard = () => {
   const {
     data: activeUsersList,
     reload: reloadActiveUsersList,
     isLoading: isActiveUsersListLoading,
-  } = useFetchUsers("/active");
+  } = useFetchUser("/active");
 
   return (
     <section className="dashboard-page">

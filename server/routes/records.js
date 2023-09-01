@@ -8,7 +8,7 @@ router.get("/:name", async (req, res) => {
   const data = await read(filePath);
 
   if (data === undefined) {
-    res.status(404).json({ message: "File not found!" });
+    res.status(404).json({ message: "File doesn't exist!" });
   } else {
     res.download(filePath, `${req.params.name}.csv`, (error) => {
       if (error) {

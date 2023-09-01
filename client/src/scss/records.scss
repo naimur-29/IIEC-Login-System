@@ -1,50 +1,50 @@
 @import "./global/variables.scss";
 
-.register-page {
+.records-page {
   width: 100%;
   height: 100%;
   margin: 0 auto;
 
-  & > .form-section {
+  & > .history-section {
     background-color: $main-dark90;
     padding: 1rem;
-    max-width: 920px;
+    max-width: 720px;
     border-radius: 8px;
     box-shadow: 0 4px 10px $main-dark20;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     margin: 0 auto;
     margin-bottom: 20px;
     animation: AppearUp 400ms ease-out backwards;
 
     & > .title {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    & > .message-container {
       width: 100%;
-
-      & > p {
-        width: 100%;
-        max-width: 720px;
-        margin: 0 auto;
-        margin-bottom: 2px;
-        font-size: 1.1rem;
-      }
+      margin-bottom: 4px;
+      font-size: 1.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
     }
 
-    & > .container {
+    & > .error-message {
+      background-color: #f003;
+      width: 100%;
+      padding: 2px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    & > .form-container {
       width: 100%;
       max-width: 720px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
 
       & > label {
-        width: 45%;
         text-align: left;
         font-size: 1.4rem;
         font-weight: 500;
@@ -52,9 +52,8 @@
         user-select: none;
       }
 
-      & > input,
-      & > select {
-        width: 55%;
+      & > input {
+        flex-grow: 1;
         background-color: $main-light30;
         border: solid 3px $main-light70;
         border-radius: 4px;
@@ -65,15 +64,9 @@
         color: $main-light;
         transition: all 100ms ease-out;
 
-        & > option {
-          background-color: #fff3;
-          color: #0007;
-          font-size: 1.1rem;
-          font-weight: 500;
-
-          &:nth-child(1) {
-            display: none;
-          }
+        &::placeholder {
+          color: #fff;
+          transition: all 100ms ease-out;
         }
 
         &:active {
@@ -83,27 +76,16 @@
         &:focus {
           opacity: 1;
           border: solid 3px $main-light;
+
+          &::placeholder {
+            opacity: 0;
+            translate: 0 10%;
+            transition: all 100ms ease-out;
+          }
         }
       }
-    }
-
-    & > .warning {
-      text-align: left;
-      width: 100%;
-      max-width: 720px;
-      color: $main-light70;
-    }
-
-    & > .buttons-container {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      width: 100%;
-      max-width: 720px;
-      cursor: pointer;
 
       & > .btn {
-        margin-bottom: 5px;
         background-color: #fff3;
         color: #fff9;
         outline: none;
@@ -115,6 +97,10 @@
         border-radius: 4px;
         padding: 8px 16px;
         transition: all 200ms ease-out;
+
+        & > a {
+          text-decoration: none;
+        }
 
         &:hover {
           color: $main-light;

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_URL = "http://127.0.0.1:9990/users";
 
-export default function useFetchUsers(urlTail = "") {
+export default function useFetchUser(urlTail = "") {
   // states:
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ export default function useFetchUsers(urlTail = "") {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 1000);
   }, [urlTail]);
 
   // useEffects:
@@ -30,5 +30,5 @@ export default function useFetchUsers(urlTail = "") {
     getData();
   }, [getData]);
 
-  return { data, reload: getData, error, isLoading };
+  return { data, reload: getData, error, setError, isLoading };
 }

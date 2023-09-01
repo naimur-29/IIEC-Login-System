@@ -55,7 +55,9 @@ const ActiveUsers = ({ activeUsersList, isActiveUsersListLoading }) => {
                   <ActiveUserCard key={user?.id} userData={user} />
                 ))
             ) : (
-              <></>
+              <p style={{ fontSize: "1.1rem" }}>
+                Looks like no ones active right now!
+              </p>
             )}
           </>
         )}

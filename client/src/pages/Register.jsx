@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../scss/register.scss";
@@ -34,11 +34,16 @@ const Register = () => {
     setError,
   } = useAuth();
 
+  // useEffects:
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // functions:
   const handleFormData = (event) => {
     setFormData((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value.trim(),
     }));
   };
 
@@ -102,7 +107,7 @@ const Register = () => {
       if (res) {
         setTimeout(() => {
           navigate("/");
-        }, 3000);
+        }, 2000);
       }
 
       setFormData({
@@ -119,7 +124,7 @@ const Register = () => {
     timeoutRef.current = setTimeout(() => {
       setError("");
       setResponse("");
-    }, 10000);
+    }, 5000);
   };
 
   return (
@@ -182,17 +187,29 @@ const Register = () => {
         </div>
 
         <div className="container">
-          <label htmlFor="department">Department: </label>
-          <input
-            ref={focusNext}
-            type="text"
+          <label htmlFor="department">Program: </label>
+          <select
             name="department"
+            ref={focusNext}
             autoComplete="off"
             readOnly
             onFocus={(event) => event.target.removeAttribute("readOnly")}
             value={formData.department}
             onChange={handleFormData}
-          />
+          >
+            <option value={formData.department}> {formData.department}</option>
+            <option value="BCSE">BCSE</option>
+            <option value="BSCE">BSCE</option>
+            <option value="BSME">BSME</option>
+            <option value="BSEEE">BSEEE</option>
+            <option value="BSAg">BSAg</option>
+            <option value="BBA">BBA</option>
+            <option value="BA in English">BA in English</option>
+            <option value="BATHM">BATHM</option>
+            <option value="BAEcon">BAEcon</option>
+            <option value="MBA">MBA</option>
+            <option value="MPH">MPH</option>
+          </select>
         </div>
 
         <div className="container">
@@ -238,8 +255,8 @@ const Register = () => {
         </div>
 
         <p className="warning">
-          *password must contain more than 8 characters, digits, uppercase,
-          lowercase.
+          *password must contain more than 8 characters, uppercase, lowercase &
+          digits.
         </p>
 
         <div className="buttons-container">
