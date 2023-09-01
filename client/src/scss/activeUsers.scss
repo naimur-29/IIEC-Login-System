@@ -13,6 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
 
     & > .title {
       color: $main-light;
@@ -42,6 +43,10 @@
       &:focus {
         opacity: 1;
         border: solid 2px $main-light;
+      }
+
+      @media (max-width: 720px) {
+        width: 40%;
       }
     }
   }

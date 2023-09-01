@@ -18,8 +18,10 @@ export default function useAuth() {
         },
       });
 
-      if (res.data.message) setResponse(res.data.message);
-      else setError("Unexpected error!");
+      if (res.data.message) {
+        setResponse(res.data.message);
+        return true;
+      } else setError("Unexpected error!");
     } catch (error) {
       setError(error.response.data.message);
     }

@@ -46,9 +46,9 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
 
   const isFormDataValid = () => {
     if (!(formData.id && formData.password)) {
-      setError("Seriously? Enter something before you press that button!");
+      setError("Seriously? Enter everything before you press that button!");
       return false;
-    } else if (isNaN(formData.id)) {
+    } else if (isNaN(formData.id) || formData.id.length !== 8) {
       setError("Enter your proper ID!");
       return false;
     } else {
@@ -68,7 +68,7 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
     const action = event.target.name;
     setError("");
     setResponse("");
-    clearTimeout(timeoutRef.current);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     let isValidReq = isFormDataValid();
 
     if (isValidReq) {
@@ -165,7 +165,7 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
         >
           Logout
         </button>
-        <Link className="btn" to={"register"}>
+        <Link className="btn register" to={"register"}>
           New here? click to register your account!
         </Link>
       </div>

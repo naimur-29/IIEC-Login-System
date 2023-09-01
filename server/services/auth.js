@@ -148,7 +148,6 @@ const registerUser = async ({ userData }) => {
 
   // sign user in:
   if (res.status === 200) {
-    console.log("doing work!");
     await signUserIn({ userData });
   }
 

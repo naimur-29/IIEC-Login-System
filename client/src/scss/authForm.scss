@@ -11,6 +11,11 @@
   border-radius: 8px;
   box-shadow: 0 4px 10px $main-dark20;
 
+  @media (max-width: 720px) {
+    padding-top: 20px;
+    flex-direction: column;
+  }
+
   & > .form {
     flex: 5;
     padding: 0px;
@@ -76,7 +81,7 @@
 
     & > .btn {
       margin-bottom: 5px;
-      color: $main-light;
+      color: #fff9;
       background-color: #fff3;
       outline: none;
       border-color: $main-light30;
@@ -89,6 +94,7 @@
       transition: all 200ms ease-out;
 
       &:hover {
+        color: $main-light;
         border-color: $main-light;
         box-shadow: 0 4px 10px $main-dark20;
       }
@@ -99,6 +105,14 @@
 
       &:disabled {
         opacity: 0.3;
+      }
+    }
+
+    & > .btn.register {
+      transition: all 100ms ease-out;
+
+      &:active {
+        scale: 1.03;
       }
     }
   }

@@ -65,7 +65,7 @@ const createUser = async ({ userData }) => {
 
     return {
       status: 200,
-      message: "User created successfully!",
+      message: `${userData.name.split(" ")[0]}, welcome to IIEC!`,
     };
   } catch (error) {
     console.log(error);
