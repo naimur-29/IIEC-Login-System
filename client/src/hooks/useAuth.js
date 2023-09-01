@@ -20,6 +20,7 @@ export default function useAuth() {
 
       if (res.data.message) {
         setResponse(res.data.message);
+        setIsLoading(false);
         return true;
       } else setError("Unexpected error!");
     } catch (error) {

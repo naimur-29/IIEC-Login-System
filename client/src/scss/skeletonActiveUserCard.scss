@@ -1,6 +1,9 @@
 @import "./global/variables.scss";
+@import "./global/animatons.scss";
 
-.card-container {
+.skeleton-card-container {
+  user-select: none;
+  color: transparent;
   background-color: #fff3;
   padding: 8px 12px;
   display: flex;
@@ -8,6 +11,7 @@
   justify-content: space-around;
   gap: 20px;
   border-radius: 6px;
+  animation: SkeletonWhite 1000ms infinite alternate;
   transition: all 150ms ease-out;
 
   &:hover {
@@ -16,7 +20,7 @@
   }
 
   & > p {
-    color: $main-light;
+    color: transparent;
     font-size: 1.2rem;
     flex: 1;
 
@@ -24,10 +28,5 @@
       font-weight: bold;
       text-transform: uppercase;
     }
-  }
-
-  & > .id {
-    border-left: 3px solid #fff7;
-    border-right: 3px solid #fff7;
   }
 }

@@ -5,6 +5,13 @@ import "../scss/activeUsers.scss";
 
 // local components:
 import ActiveUserCard from "./ActiveUserCard";
+import SkeletonActiveUserCard from "./SkeletonActiveUsersCard";
+
+// global variables:
+const dummyUsers = [];
+for (let i = 0; i < 10; i++) {
+  dummyUsers.push(null);
+}
 
 const ActiveUsers = ({ activeUsersList, isActiveUsersListLoading }) => {
   // states:
@@ -36,11 +43,11 @@ const ActiveUsers = ({ activeUsersList, isActiveUsersListLoading }) => {
         />
       </header>
 
-      <div>
+      <div className="users-list-container">
         {isActiveUsersListLoading ? (
-          <h3>Loading...</h3>
+          dummyUsers.map((ele, i) => <SkeletonActiveUserCard key={i} />)
         ) : (
-          <div className="users-list-container">
+          <>
             {activeUsersList?.length ? (
               activeUsersList
                 .filter((user) => filterUser(user))
@@ -50,7 +57,7 @@ const ActiveUsers = ({ activeUsersList, isActiveUsersListLoading }) => {
             ) : (
               <></>
             )}
-          </div>
+          </>
         )}
       </div>
     </div>

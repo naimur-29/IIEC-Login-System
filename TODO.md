@@ -26,7 +26,7 @@
 ### 31 Aug 2023
 
 - connect register system frontend✅
-- create loading skeleton
+- create loading skeleton✅
 - create records page
 - create admin account
 - route records page if admin active

@@ -8,9 +8,6 @@ import "../scss/authForm.scss";
 import useAuth from "../hooks/useAuth";
 import useFocusNext from "../hooks/useFocusNext";
 
-// global variables:
-// let timeoutRef = null;
-
 const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
   // states:
   const [formData, setFormData] = useState({
@@ -60,7 +57,7 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
   const handleFormData = (event) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value.trim(),
     });
   };
 
@@ -82,12 +79,12 @@ const AuthForm = ({ activeUsersList, reloadActiveUsersList }) => {
       } else {
         await submit(formData, `/${action}`);
         reloadActiveUsersList();
-
-        setFormData({
-          id: "",
-          password: "",
-        });
       }
+
+      setFormData({
+        id: "",
+        password: "",
+      });
     }
 
     timeoutRef.current = setTimeout(() => {
