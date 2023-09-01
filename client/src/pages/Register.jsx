@@ -20,6 +20,7 @@ const Register = () => {
     password: "",
     rePassword: "",
   });
+  const [isPasswordVisible, setIsPasswordVisible] = useState([false, false]);
 
   // hooks:
   const timeoutRef = useRef(null);
@@ -232,7 +233,7 @@ const Register = () => {
           <label htmlFor="password">Password: </label>
           <input
             ref={focusNext}
-            type="password"
+            type={isPasswordVisible[0] ? "text" : "password"}
             name="password"
             autoComplete="off"
             readOnly
@@ -246,7 +247,7 @@ const Register = () => {
           <label htmlFor="rePassword">Re-type Password: </label>
           <input
             ref={focusNext}
-            type="password"
+            type={isPasswordVisible[1] ? "text" : "password"}
             name="rePassword"
             autoComplete="off"
             readOnly

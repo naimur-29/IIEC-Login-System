@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../scss/records.scss";
 
@@ -16,6 +17,7 @@ const Records = () => {
   const timeoutRef = useRef(null);
 
   // hooks:
+  const navigate = useNavigate();
   const { data, setData, action, isLoading, error, setError, url } =
     useFetchOnDemand();
 
@@ -81,6 +83,14 @@ const Records = () => {
         <h3 className="title">Recent User Data</h3>
 
         <div className="container">
+          <button
+            className="btn"
+            onClick={() => navigate("/")}
+            disabled={isLoading}
+          >
+            Go Back
+          </button>
+
           <button
             className="btn"
             onClick={() =>

@@ -1,4 +1,5 @@
 @import "./global/variables.scss";
+@import "./global/animations.scss";
 
 .records-page {
   width: 100%;
@@ -131,7 +132,7 @@
     gap: 10px;
     margin: 0 auto;
     margin-bottom: 20px;
-    animation: AppearUp 400ms ease-out backwards;
+    animation: AppearUp 400ms ease-out 100ms backwards;
 
     & > .title {
       width: 100%;
@@ -146,14 +147,12 @@
       max-width: 720px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
       gap: 10px;
 
       & > .btn {
         background-color: #fff3;
+        flex-grow: 1;
         color: #fff9;
-        width: 100%;
         outline: none;
         border-color: $main-light30;
         border-width: 3px;
