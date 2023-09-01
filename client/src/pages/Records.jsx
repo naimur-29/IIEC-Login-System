@@ -33,8 +33,13 @@ const Records = () => {
     if (timeoutRef) clearTimeout(timeoutRef);
 
     if (userInput) {
-      await action("/" + userInput);
-      setUserInput("");
+      if (userInput.toLowerCase() === "users") {
+        setError("File doesn't exist!");
+        setUserInput("");
+      } else {
+        await action("/" + userInput);
+        setUserInput("");
+      }
     } else {
       setError("Enter something first!");
     }
@@ -67,6 +72,22 @@ const Records = () => {
             onChange={(event) => setUserInput(event.target.value.trim())}
           />
           <button className="btn" onClick={handleSubmit} disabled={isLoading}>
+            {isLoading ? "Loading..." : "Download"}
+          </button>
+        </div>
+      </div>
+
+      <div className="users-data-section">
+        <h3 className="title">Recent User Data</h3>
+
+        <div className="container">
+          <button
+            className="btn"
+            onClick={() =>
+              window.open(import.meta.env.VITE_USERS_DATA_URL, "_self")
+            }
+            disabled={isLoading}
+          >
             {isLoading ? "Loading..." : "Download"}
           </button>
         </div>

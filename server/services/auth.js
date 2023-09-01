@@ -149,6 +149,18 @@ const registerUser = async ({ userData }) => {
   // sign user in:
   if (res.status === 200) {
     await signUserIn({ userData });
+
+    const data = await read(`./records/users.csv`);
+    let newData = `${userData.id},${userData.name},${userData.department},${userData.designation}\n`;
+
+    if (data !== undefined) {
+      await write(`./records/users.csv`, data + newData);
+    } else {
+      await write(
+        `./records/users.csv`,
+        "ID,NAME,PROGRAM,IIEC DESIGNATION\n" + newData
+      );
+    }
   }
 
   return res;

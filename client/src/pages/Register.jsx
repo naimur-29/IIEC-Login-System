@@ -43,7 +43,9 @@ const Register = () => {
   const handleFormData = (event) => {
     setFormData((prev) => ({
       ...prev,
-      [event.target.name]: event.target.value.trim(),
+      [event.target.name]: prev[event.target.name]
+        ? event.target.value
+        : event.target.value.trim(),
     }));
   };
 
@@ -94,10 +96,10 @@ const Register = () => {
     if (isValidReq) {
       const res = await submit(
         {
-          name: formData.name,
-          id: formData.id,
-          department: formData.department,
-          designation: formData.designation,
+          name: formData.name.trim(),
+          id: formData.id.trim(),
+          department: formData.department.trim(),
+          designation: formData.designation.trim(),
           password: formData.password,
         },
         `/${action}`
