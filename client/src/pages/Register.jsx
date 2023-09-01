@@ -163,98 +163,195 @@ const Register = () => {
 
         <div className="container">
           <label htmlFor="name">Name: </label>
-          <input
-            ref={focusNext}
-            type="text"
-            name="name"
-            autoComplete="off"
-            readOnly
-            onFocus={(event) => event.target.removeAttribute("readOnly")}
-            value={formData.name}
-            onChange={handleFormData}
-          />
+
+          <div className="input-container">
+            <input
+              ref={focusNext}
+              type="text"
+              name="name"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.name}
+              onChange={handleFormData}
+            />
+          </div>
         </div>
 
         <div className="container">
           <label htmlFor="id">ID: </label>
-          <input
-            ref={focusNext}
-            type="text"
-            name="id"
-            autoComplete="off"
-            readOnly
-            onFocus={(event) => event.target.removeAttribute("readOnly")}
-            value={formData.id}
-            onChange={handleFormData}
-          />
+
+          <div className="input-container">
+            <input
+              ref={focusNext}
+              type="text"
+              name="id"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.id}
+              onChange={handleFormData}
+            />
+          </div>
         </div>
 
         <div className="container">
           <label htmlFor="department">Program: </label>
-          <select
-            name="department"
-            ref={focusNext}
-            autoComplete="off"
-            readOnly
-            onFocus={(event) => event.target.removeAttribute("readOnly")}
-            value={formData.department}
-            onChange={handleFormData}
-          >
-            <option value={formData.department}> {formData.department}</option>
-            <option value="BCSE">BCSE</option>
-            <option value="BSCE">BSCE</option>
-            <option value="BSME">BSME</option>
-            <option value="BSEEE">BSEEE</option>
-            <option value="BSAg">BSAg</option>
-            <option value="BBA">BBA</option>
-            <option value="BA in English">BA in English</option>
-            <option value="BATHM">BATHM</option>
-            <option value="BAEcon">BAEcon</option>
-            <option value="MBA">MBA</option>
-            <option value="MPH">MPH</option>
-          </select>
+
+          <div className="input-container">
+            <select
+              name="department"
+              ref={focusNext}
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.department}
+              onChange={handleFormData}
+            >
+              <option value={formData.department}>
+                {" "}
+                {formData.department}
+              </option>
+              <option value="BCSE">BCSE</option>
+              <option value="BSCE">BSCE</option>
+              <option value="BSME">BSME</option>
+              <option value="BSEEE">BSEEE</option>
+              <option value="BSAg">BSAg</option>
+              <option value="BBA">BBA</option>
+              <option value="BA in English">BA in English</option>
+              <option value="BATHM">BATHM</option>
+              <option value="BAEcon">BAEcon</option>
+              <option value="MBA">MBA</option>
+              <option value="MPH">MPH</option>
+            </select>
+          </div>
         </div>
 
         <div className="container">
           <label htmlFor="designation">{"IIEC Designation (If any): "}</label>
-          <input
-            ref={focusNext}
-            type="text"
-            name="designation"
-            autoComplete="off"
-            readOnly
-            onFocus={(event) => event.target.removeAttribute("readOnly")}
-            value={formData.designation}
-            onChange={handleFormData}
-          />
+
+          <div className="input-container">
+            <input
+              ref={focusNext}
+              type="text"
+              name="designation"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.designation}
+              onChange={handleFormData}
+            />
+          </div>
         </div>
 
         <div className="container">
           <label htmlFor="password">Password: </label>
-          <input
-            ref={focusNext}
-            type={isPasswordVisible[0] ? "text" : "password"}
-            name="password"
-            autoComplete="off"
-            readOnly
-            onFocus={(event) => event.target.removeAttribute("readOnly")}
-            value={formData.password}
-            onChange={handleFormData}
-          />
+
+          <div className="input-container">
+            <input
+              ref={focusNext}
+              type={isPasswordVisible[0] ? "text" : "password"}
+              name="password"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.password}
+              onChange={handleFormData}
+            />
+
+            {isPasswordVisible[0] ? (
+              <svg
+                onClick={() => setIsPasswordVisible((prev) => [false, prev[1]])}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-eye"
+              >
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            ) : (
+              <svg
+                onClick={() => setIsPasswordVisible((prev) => [true, prev[1]])}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-eye-off"
+              >
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                <line x1="2" x2="22" y1="2" y2="22" />
+              </svg>
+            )}
+          </div>
         </div>
 
         <div className="container">
           <label htmlFor="rePassword">Re-type Password: </label>
-          <input
-            ref={focusNext}
-            type={isPasswordVisible[1] ? "text" : "password"}
-            name="rePassword"
-            autoComplete="off"
-            readOnly
-            onFocus={(event) => event.target.removeAttribute("readOnly")}
-            value={formData.rePassword}
-            onChange={handleFormData}
-          />
+
+          <div className="input-container">
+            <input
+              ref={focusNext}
+              type={isPasswordVisible[1] ? "text" : "password"}
+              name="rePassword"
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.target.removeAttribute("readOnly")}
+              value={formData.rePassword}
+              onChange={handleFormData}
+            />
+
+            {isPasswordVisible[1] ? (
+              <svg
+                onClick={() => setIsPasswordVisible((prev) => [prev[0], false])}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-eye"
+              >
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            ) : (
+              <svg
+                onClick={() => setIsPasswordVisible((prev) => [prev[0], true])}
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-eye-off"
+              >
+                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                <line x1="2" x2="22" y1="2" y2="22" />
+              </svg>
+            )}
+          </div>
         </div>
 
         <p className="warning">

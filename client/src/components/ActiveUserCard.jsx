@@ -13,8 +13,7 @@ const ActiveUserCard = ({ userData }) => {
         {userData.id}
       </p>
       <p>
-        <span>Joined at: </span>
-        {userData.lastJoinedAt}
+        <span>{userData.lastJoinedAt}</span>
       </p>
     </div>
   );

@@ -1,6 +1,27 @@
 const crypto = require("crypto");
 const { createUser, getUsersById, updateUserById } = require("./users");
-const { read, write, getCurrentDateTime } = require("./records");
+const { read, write } = require("./records");
+
+const getCurrentDateTime = (d) => {
+  // date:
+  const currentDate = d
+    .toLocaleString("en-UK", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    })
+    .replaceAll("/", "-");
+
+  // time:
+  const currentTime = d.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  });
+
+  return { currentDate, currentTime };
+};
 
 const getHashedPassword = (plainPassword) => {
   const secretKey = process.env.HASH_KEY;
@@ -38,7 +59,7 @@ const signUserIn = async ({ userData }) => {
   if (user.active) {
     return {
       status: 200,
-      message: `${user.name.split(" ")[0]}, you've already signed in!`,
+      message: `${user.name.split(" ")[0]}, you've already logged in!`,
     };
   }
 
@@ -61,13 +82,13 @@ const signUserIn = async ({ userData }) => {
     } else {
       await write(
         `./records/${currentDate}.csv`,
-        "ID, NAME, ACTIVITY, TIME(MILITARY)\n" + newData
+        "ID, NAME, ACTIVITY, TIME\n" + newData
       );
     }
 
     return {
       ...res,
-      message: `Hey ${user.name.split(" ")[0]}, you signed in successfully!`,
+      message: `Hey ${user.name.split(" ")[0]}, you logged in successfully!`,
     };
   }
 };
@@ -97,7 +118,7 @@ const signUserOut = async ({ userData }) => {
   if (!user.active) {
     return {
       status: 200,
-      message: `${user.name.split(" ")[0]}, you've already signed out!`,
+      message: `${user.name.split(" ")[0]}, you've already logged out!`,
     };
   }
 
@@ -120,13 +141,13 @@ const signUserOut = async ({ userData }) => {
     } else {
       await write(
         `./records/${currentDate}.csv`,
-        "ID,NAME,ACTIVITY,TIME(MILITARY)\n" + newData
+        "ID,NAME,ACTIVITY,TIME\n" + newData
       );
     }
 
     return {
       ...res,
-      message: `Hey ${user.name.split(" ")[0]}, you signed out successfully!`,
+      message: `Hey ${user.name.split(" ")[0]}, you logged out successfully!`,
     };
   }
 };
