@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 10px $main-dark20;
+  user-select: none;
   z-index: 100;
 
   & > .title-img {
