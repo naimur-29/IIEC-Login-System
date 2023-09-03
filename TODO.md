@@ -32,5 +32,5 @@
 - create loading skeleton✅
 - create records page✅
 - store student records✅
-- create admin account
-- route records page if admin active
+- create admin account✅
+- route records page if admin active✅

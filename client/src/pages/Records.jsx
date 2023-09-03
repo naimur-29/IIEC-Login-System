@@ -22,6 +22,7 @@ const Records = () => {
     useFetchOnDemand();
 
   // useEffects:
+
   useEffect(() => {
     if (data) {
       window.open(url, "_self");
@@ -93,9 +94,9 @@ const Records = () => {
 
           <button
             className="btn"
-            onClick={() =>
-              window.open(import.meta.env.VITE_USERS_DATA_URL, "_self")
-            }
+            onClick={() => {
+              window.open(import.meta.env.VITE_USERS_DATA_URL, "_self");
+            }}
             disabled={isLoading}
           >
             {isLoading ? "Loading..." : "Download"}

@@ -22,8 +22,10 @@ const Register = () => {
   });
   const [isPasswordVisible, setIsPasswordVisible] = useState([false, false]);
 
-  // hooks:
+  // references:
   const timeoutRef = useRef(null);
+
+  // hooks:
   const navigate = useNavigate();
   const focusNext = useFocusNext();
   const {

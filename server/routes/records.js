@@ -1,9 +1,17 @@
 const express = require("express");
 const { read } = require("../services/records");
+const { getUserByID } = require("../services/users");
 
 const router = express.Router();
 
 router.get("/:name", async (req, res) => {
+  // check if admin:
+  const admin = await getUserByID(process.env.ADMIN_ID);
+  console.log(admin);
+  if (admin === null || !admin.active) {
+    return res.status(401).json({ message: "Not authorized!" });
+  }
+
   const filePath = `./records/${req.params.name}.csv`;
   const data = await read(filePath);
 

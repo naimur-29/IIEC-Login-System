@@ -1,5 +1,9 @@
 const Error = () => {
-  return <h1 style={{ color: "red" }}>Error: 404 not found!</h1>;
+  return (
+    <h3 style={{ color: "red", fontSize: "3rem", textTransform: "uppercase" }}>
+      Wrong URL mate!
+    </h3>
+  );
 };
 
 export default Error;

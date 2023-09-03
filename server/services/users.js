@@ -48,6 +48,21 @@ const getActiveUsers = async () => {
   }
 };
 
+const getUserByID = async (uid) => {
+  try {
+    let res = null;
+    res = await User.findOne({ id: Number(uid) });
+
+    return res;
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 404,
+      message: "Active Users not found!",
+    };
+  }
+};
+
 const createUser = async ({ userData }) => {
   try {
     // check if user already exists:
@@ -97,6 +112,7 @@ module.exports = {
   getUsersById,
   getUsers,
   getActiveUsers,
+  getUserByID,
   createUser,
   updateUserById,
 };
